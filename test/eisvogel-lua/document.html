@@ -1,0 +1,88 @@
+<h1 id="boxes-with-pandoc-latex-environment-and-awesomebox">Boxes with
+<code>pandoc-latex-environment</code> and <code>awesomebox</code></h1>
+<p>This example demonstrates the use of the filter <a
+href="https://github.com/chdemko/pandoc-latex-environment/"><code>pandoc-latex-environments</code></a>
+to create custom boxes with the <a
+href="https://ctan.org/pkg/awesomebox"><code>awesomebox</code></a>
+package. <em>pandoc-latex-environment</em> is a pandoc filter for adding
+LaTeX environement on specific HTML div tags.</p>
+<h2 id="box-types">Box Types</h2>
+<p>For a list of all available boxes and options visit the <a
+href="https://ctan.org/pkg/awesomebox"><code>awesomebox</code>
+documentation</a>.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>::: note</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor ...</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="note">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet
+libero quis lectus elementum fermentum.</p>
+<p>Fusce aliquet augue sapien, non efficitur mi ornare sed. Morbi at
+dictum felis. Pellentesque tortor lacus, semper et neque vitae, egestas
+commodo nisl.</p>
+</div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>::: tip</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor ...</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="tip">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet
+libero quis lectus elementum fermentum.</p>
+<p>Fusce aliquet augue sapien, non efficitur mi ornare sed. Morbi at
+dictum felis. Pellentesque tortor lacus, semper et neque vitae, egestas
+commodo nisl.</p>
+</div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>::: warning</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor ...</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="warning">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet
+libero quis lectus elementum fermentum.</p>
+<p>Fusce aliquet augue sapien, non efficitur mi ornare sed. Morbi at
+dictum felis. Pellentesque tortor lacus, semper et neque vitae, egestas
+commodo nisl.</p>
+</div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>::: caution</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor ...</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="caution">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet
+libero quis lectus elementum fermentum.</p>
+<p>Fusce aliquet augue sapien, non efficitur mi ornare sed. Morbi at
+dictum felis. Pellentesque tortor lacus, semper et neque vitae, egestas
+commodo nisl.</p>
+</div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>::: important</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor ...</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div>
+<div class="important">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet
+libero quis lectus elementum fermentum.</p>
+<p>Fusce aliquet augue sapien, non efficitur mi ornare sed. Morbi at
+dictum felis. Pellentesque tortor lacus, semper et neque vitae, egestas
+commodo nisl.</p>
+</div>
+<p>One can also use raw HTML <code>div</code> tags to create the custom
+environments.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;important&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor ...</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div>
+<div class="important">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet
+libero quis lectus elementum fermentum.</p>
+</div>
+<p>Markdown formatting inside the environments is supported.</p>
+<div class="important">
+<p><strong>Lorem ipsum dolor</strong> sit amet,
+<code>consectetur adipiscing</code> elit.</p>
+<pre><code>if(args.length &lt; 2) {
+    System.out.println(&quot;Lorem ipsum dolor sit amet&quot;);
+}</code></pre>
+<p><em>Nam aliquet libero quis lectus elementum fermentum.</em></p>
+</div>
+<h2 id="bug-216-missing-font-error">bug 216 : missing font error</h2>
+<pre><code>Some block of `code` with `backticks`</code></pre>

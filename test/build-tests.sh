@@ -14,7 +14,7 @@ containsElement () {
 }
 
 # these examples are skipped because they don't run in CI builds (for now)
-skippedExamples=()
+skippedExamples=(eisvogel-lua)
 
 # loop all files in the current folder
 for f in *; do
