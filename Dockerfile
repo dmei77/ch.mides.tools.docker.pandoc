@@ -3,7 +3,7 @@ FROM pandoc/extra:3.5.0-ubuntu
 
 # Labels -> http://label-schema.org/
 LABEL ch.mides.tools.docker.pandoc.name = "pandoc"
-LABEL ch.mides.tools.docker.pandoc.description = "Dieses Docker Image hat alle Tools für die Erzeugung von pdfs mit pandoc"
+LABEL ch.mides.tools.docker.pandoc.description = "This Docker image includes all the tools needed to generate PDFs with Pandoc."
 LABEL ch.mides.tools.docker.pandoc.vendor = "MiDES"
 LABEL ch.mides.tools.docker.pandoc.version = "0.0.1"
 LABEL ch.mides.tools.docker.pandoc.maintainer = "dominic.meier@mides.ch"
