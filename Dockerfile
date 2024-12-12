@@ -5,7 +5,7 @@ FROM pandoc/extra:3.5.0-ubuntu
 LABEL ch.mides.tools.docker.pandoc.name = "pandoc"
 LABEL ch.mides.tools.docker.pandoc.description = "This Docker image includes all the tools needed to generate PDFs with Pandoc."
 LABEL ch.mides.tools.docker.pandoc.vendor = "MiDES"
-LABEL ch.mides.tools.docker.pandoc.version = "0.0.1"
+LABEL ch.mides.tools.docker.pandoc.version = "0.0.2"
 LABEL ch.mides.tools.docker.pandoc.maintainer = "dominic.meier@mides.ch"
 
 
@@ -20,10 +20,16 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-instal
     graphviz
 
 # Install python/pip and git
-#ENV PYTHONUNBUFFERED=1
-#RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
-#    python3 \
-#    python3-pip \
-#    python-is-python3 \
-#    git
+ENV PYTHONUNBUFFERED=1
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
+    python3 \
+    python3-pip \
+    python-is-python3 \
+    git
+
+COPY ./assets/pip.conf /etc/pip.conf
+RUN pip3 install --no-cache --upgrade setuptools
+
+# Install kroki filter
+RUN pip3 install git+https://gitlab.com/myriacore/pandoc-kroki-filter.git
 

@@ -7,15 +7,17 @@ This repository contains a customized docker image of the pandoc:extra image.
 Build
 --------------------------------------------------------------------------------
 
-1. Check sourcecode from github
+1. Install [Docker](https://www.docker.com) if you don't have it already.
 
-2. Open a shell and navigate to the rootfolder of project
+2. Checkout sourcecode from github
+
+3. Open a shell and navigate to the rootfolder of project
 
    ```sh
    cd ch.mides.tools.docker.pandoc
    ```
 
-3. Run `build.sh`
+4. Run `build.sh`
 
    ```sh
    ./build.sh
@@ -61,4 +63,7 @@ Basic Usage
    It may look weird to you that you can just add `README.md` at the end of this
    line, but that's just because the `mides/pandoc:latest` will simply prepend
    `pandoc` in front of anything you write after `mides/pandoc:latest`
+
+
+
 
