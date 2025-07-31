@@ -36,8 +36,6 @@ Basic Usage
    cd path/to/source/dir
    ```
 
-   You can always run `pwd` to check whether you're in the right place.
-
 4. [Run docker](https://docs.docker.com/engine/reference/run/) by entering the
    below commands in your favorite shell.
 

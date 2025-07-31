@@ -1,0 +1,11 @@
+#
+# Latex packages required by the templates and filters
+#
+
+#########################################################################
+# Required by pandoc-latex-environment filter
+newunicodechar
+xetex
+collection-langchinese
+
+
