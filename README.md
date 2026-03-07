@@ -1,7 +1,16 @@
 MiDES pandoc docker
 ===================================================================
 
-This repository contains a customized docker image of the pandoc:extra image. 
+This repository contains a customized Docker image based on pandoc/extra:3.5.0-ubuntu for PDF generation with Pandoc.
+
+The image extends the official Pandoc Extra image with the following components:
+
+- TeX packages: newunicodechar, xetex, collection-langchinese (installed via tlmgr)
+- System packages: Inkscape, Graphviz, Poppler-Utils, Noto CJK/Core/FreeFont fonts
+- Python 3 with pip and setuptools
+- pandoc-kroki-filter for diagram generation via Kroki
+
+This enables Markdown to PDF conversion using the Eisvogel template, SVG embedding via Inkscape, diagram generation with Kroki and Graphviz, and support for Chinese characters.
 
 
 Build
@@ -63,5 +72,35 @@ Basic Usage
    `pandoc` in front of anything you write after `mides/pandoc:latest`
 
 
+Tests
+--------------------------------------------------------------------------------
 
+The `test/` directory contains various test cases that verify different features of the Docker image. Each subdirectory contains a `document.md` and a `build.sh` script that runs pandoc inside the container.
+
+To run all tests at once, use the `build-tests.sh` script:
+
+```sh
+cd test
+bash build-tests.sh
+```
+
+The script iterates over all subdirectories, executes each `build.sh`, and generates a PNG preview from the resulting PDF. Some tests (e.g. `eisvogel-lua`) are skipped in CI builds.
+
+Available test cases:
+
+- `eisvogel` - Eisvogel template
+- `eisvogel-env` - Eisvogel with environment variables
+- `eisvogel-lua` - Eisvogel with Lua filter (skipped in CI)
+- `eisvogel-beamer` - Beamer presentations
+- `eisvogel-crossref` - Cross-references
+- `eisvogel-chinese` - Chinese font support
+- `eisvogel-tectonic` - Tectonic engine
+- `kroki` - Kroki diagram generation
+- `image-svg` - SVG embedding
+- `heading` - Headings
+- `horizontal-rule` - Horizontal rules
+- `list-ordered` - Ordered lists
+- `list-unordered` - Unordered lists
+- `list-task` - Task lists
+- `list-definition` - Definition lists
 

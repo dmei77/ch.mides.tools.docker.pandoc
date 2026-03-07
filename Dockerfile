@@ -5,11 +5,10 @@ FROM pandoc/extra:3.5.0-ubuntu
 LABEL ch.mides.tools.docker.pandoc.name = "pandoc"
 LABEL ch.mides.tools.docker.pandoc.description = "This Docker image includes all the tools needed to generate PDFs with Pandoc."
 LABEL ch.mides.tools.docker.pandoc.vendor = "MiDES"
-LABEL ch.mides.tools.docker.pandoc.version = "0.0.3"
+LABEL ch.mides.tools.docker.pandoc.version = "0.0.4"
 LABEL ch.mides.tools.docker.pandoc.maintainer = "dominic.meier@mides.ch"
 
 COPY assets/packages.txt /root/packages.txt
-
 
 ARG UID=1000
 ARG GID=1000
@@ -20,9 +19,17 @@ RUN sed -e 's/ *#.*$//' -e '/^ *$/d' /root/packages.txt | \
     xargs tlmgr install \
   && rm -f /root/packages.txt
 
-# Install Inkscape. Before, update all package repositories 
+# Reduce image size: skip man pages, locales and docs during apt-get install
+COPY ./assets/01_nodoc /etc/dpkg/dpkg.cfg.d/01_nodoc
+
+# Reduce image size: disable apt package cache
+COPY ./assets/02_nocache /etc/apt/apt.conf.d/02_nocache
+
+# Install Inkscape. Before, update all package repositories
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     fonts-noto-cjk \
+    fonts-noto-core \
+    fonts-noto-extra \
     fonts-freefont-ttf \
     poppler-utils \
     inkscape \
@@ -41,4 +48,8 @@ RUN pip3 install --no-cache --upgrade setuptools
 
 # Install kroki filter
 RUN pip3 install git+https://gitlab.com/myriacore/pandoc-kroki-filter.git
+
+# Fix panflute SyntaxWarning with Python 3.12+ (invalid escape sequence in docstring)
+COPY assets/fix-panflute.py /tmp/fix-panflute.py
+RUN python3 /tmp/fix-panflute.py && rm /tmp/fix-panflute.py
 

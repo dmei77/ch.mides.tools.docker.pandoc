@@ -1,0 +1,5 @@
+# See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
+# newer versions of the distribution.
+deb http://nexus.esm.v-zug.ch/repository/ubuntu-jammy/ jammy main restricted universe multiverse
+deb http://nexus.esm.v-zug.ch/repository/ubuntu-jammy/ jammy-updates main restricted universe multiverse
+deb http://nexus.esm.v-zug.ch/repository/ubuntu-jammy/ jammy-security main restricted universe multiverse

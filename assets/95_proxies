@@ -1,0 +1,4 @@
+Acquire::http::proxy "http://gateway.zscloud.net:9480/";    
+Acquire::ftp::proxy "http://gateway.zscloud.net:9480/";   
+Acquire::https::proxy "http://gateway.zscloud.net:9480/";
+
