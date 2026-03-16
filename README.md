@@ -8,7 +8,7 @@ The image extends the official Pandoc Extra image with the following components:
 - TeX packages: newunicodechar, xetex, collection-langchinese (installed via tlmgr)
 - System packages: Inkscape, Graphviz, Poppler-Utils, Noto CJK/Core/FreeFont fonts
 - Python 3 with pip and setuptools
-- pandoc-kroki-filter for diagram generation via Kroki
+- pandoc-kroki-filter for diagram generation via Kroki (patched: PNG output for Mermaid diagrams)
 
 This enables Markdown to PDF conversion using the Eisvogel template, SVG embedding via Inkscape, diagram generation with Kroki and Graphviz, and support for Chinese characters.
 
@@ -103,4 +103,11 @@ Available test cases:
 - `list-unordered` - Unordered lists
 - `list-task` - Task lists
 - `list-definition` - Definition lists
+- `mermaid-statemachine` - Mermaid state machine diagram
+
+
+Acknowledgements
+--------------------------------------------------------------------------------
+
+- [pandoc-kroki-filter](https://gitlab.com/myriacore/pandoc-kroki-filter) by **MyriaCore** - The Kroki filter included in this image is based on this project. It has been patched to use PNG instead of SVG for Mermaid diagrams, fixing missing text labels in PDF output. The output format can be configured via the `KROKI_PNG_TYPES` environment variable (comma-separated list of diagram types, default: `mermaid`).
 

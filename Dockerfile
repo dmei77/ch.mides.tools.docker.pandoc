@@ -33,7 +33,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-instal
     fonts-freefont-ttf \
     poppler-utils \
     inkscape \
-    graphviz
+    graphviz \
+    librsvg2-bin
 
 # Install python/pip and git
 ENV PYTHONUNBUFFERED=1
@@ -46,8 +47,12 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-instal
 COPY ./assets/pip.conf /etc/pip.conf
 RUN pip3 install --no-cache --upgrade setuptools
 
-# Install kroki filter
-RUN pip3 install git+https://gitlab.com/myriacore/pandoc-kroki-filter.git
+# Install kroki filter dependencies (pandocfilters)
+RUN pip3 install --no-cache pandocfilters
+
+# Install patched kroki filter (PNG for Mermaid to fix missing text in PDF)
+COPY assets/pandoc_kroki_filter.py /usr/local/bin/pandoc-kroki
+RUN chmod +x /usr/local/bin/pandoc-kroki
 
 # Fix panflute SyntaxWarning with Python 3.12+ (invalid escape sequence in docstring)
 COPY assets/fix-panflute.py /tmp/fix-panflute.py
