@@ -5,7 +5,7 @@ FROM pandoc/extra:3.5.0-ubuntu
 LABEL ch.mides.tools.docker.pandoc.name = "pandoc"
 LABEL ch.mides.tools.docker.pandoc.description = "This Docker image includes all the tools needed to generate PDFs with Pandoc."
 LABEL ch.mides.tools.docker.pandoc.vendor = "MiDES"
-LABEL ch.mides.tools.docker.pandoc.version = "0.0.4"
+LABEL ch.mides.tools.docker.pandoc.version = "0.0.5"
 LABEL ch.mides.tools.docker.pandoc.maintainer = "dominic.meier@mides.ch"
 
 COPY assets/packages.txt /root/packages.txt
@@ -14,7 +14,10 @@ ARG UID=1000
 ARG GID=1000
 
 # Install additional packages
-RUN tlmgr update --self
+# Pin tlmgr to the archived TeX Live 2025 repository because the image ships TL 2025
+# while CTAN now serves TL 2026 (cross-release updates via tlmgr are unsupported).
+RUN tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2025/tlnet-final && \
+    tlmgr update --self
 RUN sed -e 's/ *#.*$//' -e '/^ *$/d' /root/packages.txt | \
     xargs tlmgr install \
   && rm -f /root/packages.txt
